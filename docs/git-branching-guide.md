@@ -121,7 +121,7 @@ This helps to maintain clear traceability between GitHub Issues, branches, and c
 - Squash or rebase before merging
 - Ensure PR description references the issue, e.g. “Closes #12”
 - Use **Squash and Merge** to produce a clean, single commit on `main`.
-  - The squash commit message should include the issue number, e.g.:
-    - `feat: add recurring transfers (#123)`
+  - The squash commit message should include the issue number after type and PR number in the end, e.g.:
+    - `fix(#248): handle null notes (#123)`
 - Branches are **deleted after merge** (keep the repo tidy).
 
