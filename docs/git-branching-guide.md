@@ -69,25 +69,28 @@ This helps to maintain clear traceability between GitHub Issues, branches, and c
 
 ## Commit and PR conventions
 
-- **Conventional Commits** (recommended):
-  * `feat(ui): add expense import (closes #123)`
-  * `fix(db): handle null notes (fixes #248)`
+- Commit message format: `<type>(scope): <short summary>`
+  - `feat(ui): add expense import (closes #123)`
+  - `fix(db): handle null notes (fixes #248)`
 
-- In **PR description**, add:
-  * `fixes #123` (or `closes #123`) in the end of the title so GitHub auto-closes the issue on merge.
+- When creating a PR, include **closing keywords** in the PR description:
+   - `Closes #123` (or `Fixes #123`, `Resolves #123`)
+   - This automatically closes the issue when the PR merges.
 
 ### Examples
 
 - New feature:  
   Branch name: `feat/456-export-csv`  
   Commit title: `feat(#456): export csv"`
-  PR title: `feat(export): add CSV export (fixes #456)`
+  PR title: `feat(export): add CSV export`
+  PR description: `... Fixes #456`
 
 - Bug fix:  
   
   Branch name: `fix/471-null-note-crash`  
   Commit title: `fix(#471): handle null note on import"`
-  PR title: `fix(expenses): handle null note on import (closes #471)`
+  PR title: `fix(expenses): handle null note on import`
+  PR description: `... Closes #471`
 
 ---
 
