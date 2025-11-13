@@ -177,7 +177,7 @@ DATABASE_URL=postgresql+psycopg2://budgetuser:changeme@localhost:5432/budgetdb
 
 ---
 
-## 🐳 5. Database Setup (Docker Compose)
+## 5. Database Setup (Docker Compose)
 
 ### Start PostgreSQL
 
@@ -205,7 +205,7 @@ docker compose down
 
 ---
 
-## 🗃️ 6. Database Schema (SQLAlchemy + Alembic)
+## 6. Database Schema (SQLAlchemy + Alembic)
 
 ### Initialize Alembic (if not done)
 
@@ -279,33 +279,6 @@ poetry run pytest -v
 
 ---
 
-## 🧰 10. Useful Commands
-
-### Update dependencies
-
-```bash
-poetry update
-```
-
-### Add new dependency
-
-```bash
-poetry add <package-name>
-```
-
-### Add dev dependency
-
-```bash
-poetry add --group dev pytest
-```
-
-### Export requirements.txt (for Docker)
-
-```bash
-poetry export -f requirements.txt --output requirements.txt
-```
-
----
 
 ## 🧾 11. Project Commands Summary
 

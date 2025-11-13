@@ -1,2 +1,95 @@
-finflow/.env
+# -------------------------------
+# Python
+# -------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyd
+*$py.class
+
+# -------------------------------
+# Poetry
+# -------------------------------
+.venv/
+poetry.lock*
+
+# -------------------------------
+# Environment variables
+# -------------------------------
+.env
+.env.*
+!.env.example
+
+# -------------------------------
+# Build / Packaging
+# -------------------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# -------------------------------
+# Testing
+# -------------------------------
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.cache/
+
+# -------------------------------
+# MyPy / Ruff / Other Tools
+# -------------------------------
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.dmypy.json
+dmypy.json
+
+# -------------------------------
+# Qt / PyQt Resources
+# -------------------------------
+*.qrc
+*.rcc
+*.qmlc
+*.qss~
+*.ui~
+*.bak
+*.autosave
+
+# Generated PyQt files (optional)
+*_rc.py
+*_ui.py
+
+# -------------------------------
+# Local Development Artifacts
+# -------------------------------
+logs/
+*.log
+tmp/
+temp/
+.cache/
+*.swp
+*.swo
 tmp.*
+
+# -------------------------------
+# Docker
+# -------------------------------
+docker/*.pid
+docker/*.tmp
+dbdata/
+docker-compose.override.yml
+
+# -------------------------------
+# OS-specific
+# -------------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------------
+# IDE / Editor settings
+# -------------------------------
+.vscode/
+.idea/
