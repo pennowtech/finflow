@@ -207,30 +207,69 @@ docker compose down
 
 ## 6. Database Schema (SQLAlchemy + Alembic)
 
+**Assumptions:**
+
+- SQLAlchemy models live in:
+    `finflow/infrastructure/orm/entities.py` with `Base = DeclarativeBase`
+
+- DB URL is in: `finflow/config/settings.py` as `CONFIG.database_url`
+
 ### Initialize Alembic (if not done)
 
-```bash
-alembic init alembic
-```
+- From _poetry shell_:
+    ```bash
+    alembic init alembic
+    ```
 
-In `alembic/env.py`:
+- or from normal shell:
+    ```bash
+    poetry run alembic init alembic`
+    ```
+This creates:
 
-```python
-from budget_app.models import Base
-target_metadata = Base.metadata
-```
+- `alembic/` (`env.py`, `script.py.mako`, `versions/`)
+- `alembic.ini` in the root
 
-### Generate migration
+- Wire Alembic to your models. In `alembic/env.py`:
+    ```python
+    from logging.config import fileConfig
+    from sqlalchemy import engine_from_config, pool
+    from alembic import context
 
+    from finflow.infrastructure.orm.entities import Base
+    from finflow.config.settings import CONFIG
+
+    config = context.config
+
+    # Use our real DATABASE_URL instead of alembic.ini's sqlalchemy.url
+    config.set_main_option("sqlalchemy.url", CONFIG.database_url)
+
+    if config.config_file_name is not None:
+        fileConfig(config.config_file_name)
+
+    target_metadata = Base.metadata
+    ```
+Now Alembic knows:
+- where to connect (your PostgreSQL)
+- what schema to compare (your `Base.metadata`)
+
+### Create the first migration
+Make sure your models in entities.py are defined (Month, Expense, Transfer, etc.), then:
 ```bash
 alembic revision --autogenerate -m "init database"
 ```
+This writes a file in `alembic/versions/xxxx_init_database.py` with `upgrade()` and `downgrade()`.
+
+Always:
+- Check the generated file into Git
+- Skim it to ensure it matches your intent
 
 ### Apply migration
 
 ```bash
 alembic upgrade head
 ```
+This creates all tables in your PostgreSQL DB.
 
 ---
 
