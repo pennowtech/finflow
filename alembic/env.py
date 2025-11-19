@@ -11,7 +11,7 @@ from finflow.config.settings import settings
 config = context.config
 
 # Use our real DATABASE_URL instead of alembic.ini's sqlalchemy.url
-config.set_main_option("sqlalchemy.url", settings.database_url)
+config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
