@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "finflow"
+version = "1.0.0"
+description = "Personal budget dashboard"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+PyQt6 = "^6.7.0"
+SQLAlchemy = "^2.0.36"
+psycopg2-binary = "^2.9.10"
+matplotlib = "^3.9.2"
+alembic = "^1.13.1"
+python-dotenv = "^1.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"
+mypy = "^1.11.0"
+ruff = "^0.6.2"
+black = "^24.10.0"
+isort = "^5.13.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
