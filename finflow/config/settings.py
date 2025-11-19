@@ -32,11 +32,16 @@ class Settings:
 
     @property
     def DATABASE_URL(self) -> str:
-        return (
-            f"postgresql+psycopg2://{self.POSTGRES_USER}:"
-            f"{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:"
-            f"{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
-        )
+        database_url = os.getenv("DATABASE_URL")
+
+        if database_url is not None:
+            return database_url
+        else:
+            return (
+                f"postgresql+psycopg2://{self.POSTGRES_USER}:"
+                f"{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:"
+                f"{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
+            )
     currency: str = "€"
 
 
