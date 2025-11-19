@@ -1,0 +1,86 @@
+name: CI
+
+on:
+    push:
+        branches: [main, master]
+    pull_request:
+        branches: [main, master]
+
+jobs:
+    build-test:
+        runs-on: ubuntu-latest
+
+        services:
+            postgres:
+                image: postgres:18
+                env:
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: postgres
+                    POSTGRES_DB: finflow_test
+                ports:
+                    - 5432:5432
+                options: >-
+                    --health-cmd="pg_isready -U postgres"
+                    --health-interval=5s
+                    --health-timeout=3s
+                    --health-retries=30
+
+        env:
+            POETRY_VERSION: "2.2.1"
+            PYTHON_VERSION: "3.13"
+            DATABASE_URL: postgresql+psycopg2://postgres:postgres@localhost:5432/finflow_test
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: ${{ env.PYTHON_VERSION }}
+
+            - name: Install Poetry
+              uses: abatilo/actions-poetry@v2
+              with:
+                  poetry-version: ${{ env.POETRY_VERSION }}
+
+            - name: Configure Poetry (no venv creation in CI)
+              run: poetry config virtualenvs.create false
+
+            - name: Cache Poetry
+              uses: actions/cache@v4
+              with:
+                  path: ~/.cache/pypoetry
+                  key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-poetry-
+
+            - name: Install dependencies
+              run: poetry install --with dev
+
+            - name: Wait for Postgres
+              run: |
+                  for i in {1..60}; do
+                    pg_isready -h localhost -p 5432 -U postgres && break
+                    sleep 1
+                  done
+                  psql -h localhost -U postgres -d finflow_test -c "SELECT 1;" || exit 1
+              env:
+                  PGPASSWORD: postgres
+
+            - name: Run Alembic migrations (if configured)
+              run: |
+                  if [ -d "finflow/infrastructure/alembic" ] || [ -d "alembic" ]; then
+                    poetry run alembic upgrade head
+                  else
+                    echo "No alembic directory found. Skipping migrations."
+                  fi
+
+            - name: Lint (ruff)
+              run: poetry run ruff check .
+
+            - name: Type check (mypy)
+              run: poetry run mypy finflow || true
+
+            - name: Run tests (pytest)
+              run: poetry run pytest -v
