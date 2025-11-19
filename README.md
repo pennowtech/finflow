@@ -3,7 +3,7 @@
 
 A **modern, stress-free budget and abundance dashboard** built with **PyQt6**, **SQLAlchemy 2.0**, and **PostgreSQL** — running seamlessly via **Docker Compose**.
 
-## 🌟 Features
+## Features
 - Track income, expenses, and goals with an intuitive GUI.
 - Auto-starting PostgreSQL container (no manual DB setup).
 - Charts for expenses and budget allocation (Matplotlib).
@@ -11,7 +11,7 @@ A **modern, stress-free budget and abundance dashboard** built with **PyQt6**, *
 - Modular SOLID architecture with SQLAlchemy ORM.
 - Cross-platform (macOS, Windows, Linux).
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Docker + Docker Compose v2
@@ -32,19 +32,22 @@ python run_with_docker.py
 When you close the app, Docker containers shut down automatically.
 Data persists in the `dbdata` Docker volume.
 
-## 📊 Tech Stack
+## Tech Stack
 
-* **Frontend:** PyQt6 + Matplotlib
+* **Frontend:** PyQt6 + Matplotlib | Future: 
 * **Backend:** SQLAlchemy 2.0 ORM
 * **Database:** PostgreSQL 16
 * **DevOps:** Docker Compose
 * **Testing:** pytest
 
-## 📈 Future Enhancements
+## Future Enhancements
 
 * Cloud sync via Supabase
 * Multi-user accounts
+* Web interface
+  * ReactJS or NextJS
 * Mobile-responsive UI (Qt for Android)
+  * or ReactNative
 * AI-based expense categorization
 
 ---
