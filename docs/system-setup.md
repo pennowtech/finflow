@@ -2,7 +2,7 @@
 
 This document provides detailed, step-by-step instructions to set up, run, and maintain the **FinFlow Budget Dashboard** using **Poetry**, **Docker Compose**, and **PostgreSQL**.
 
-## 🧱 1. Prerequisites
+## 1. Prerequisites
 
 Before starting, ensure you have the following installed:
 
@@ -14,16 +14,12 @@ Before starting, ensure you have the following installed:
 | 🧩 **Docker Compose (v2)** | 2.20+ | Container orchestration |
 | 🖼 **Git** | latest | Version control |
 
----
-
-## 📂 2. Clone the Repository
+## 2. Clone the Repository
 
 ```bash
 git clone https://github.com/yourname/finflow.git
 cd finflow
 ```
-
----
 
 ## 3. Setup the Environment
 
@@ -85,7 +81,7 @@ If you’d rather keep using the old behavior:
 poetry self add poetry-plugin-shell
 ```
 
-✅ This restores the legacy `shell` command exactly as in Poetry 1.x.
+This restores the legacy `shell` command exactly as in Poetry 1.x.
 Now, you’ll be able to use following command to activate your virtual environment:
 
 ```bash
