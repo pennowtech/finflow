@@ -1,7 +1,7 @@
 
 # 💸 FinFlow — Personal Finance Dashboard
 
-A **modern, stress-free budget and abundance dashboard** built with **PyQt6**, **SQLAlchemy 2.0**, and **PostgreSQL** — running seamlessly via **Docker Compose**.
+A **personal budgeting** application, built with **PyQt6**, **SQLAlchemy 2.0**, and **PostgreSQL** — running seamlessly via **Docker Compose**.
 
 ## Features
 - Track income, expenses, and goals with an intuitive GUI.
@@ -16,7 +16,7 @@ A **modern, stress-free budget and abundance dashboard** built with **PyQt6**, *
 ### Prerequisites
 - Docker + Docker Compose v2
 - Python 3.11+
-- Virtualenv or Poetry
+- Poetry
 
 ### Setup
 ```bash
@@ -24,13 +24,31 @@ git clone https://github.com/yourname/finflow.git
 cd finflow
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-python run_with_docker.py
+alembic upgrade head
 ```
 
-### Stopping
+> Recommended way to setup/develop the app is listed under [system-setup](docs/system-setup.md) document.
+
+#### Run the app:
+```bash
+python run_with_docker.py
+```
+#### Stopping
 
 When you close the app, Docker containers shut down automatically.
 Data persists in the `dbdata` Docker volume.
+
+#### Testing
+
+* Run all tests:
+
+    ```bash
+    pytest -v
+    ```
+
+* Lint with `ruff` or `flake8`
+* Type-check with `mypy`
+
 
 ## Tech Stack
 
@@ -50,31 +68,7 @@ Data persists in the `dbdata` Docker volume.
   * or ReactNative
 * AI-based expense categorization
 
----
-
-### How To Run
-
-1. Clone the repo.
-2. Install dependencies with:
-```bash
-   pip install -r requirements-dev.txt
-````
-
-3. Use `docker compose up -d db` to start PostgreSQL.
-4. Run migrations: `alembic upgrade head`
-5. Run the app: `python -m budget_app.ui_main`
-
-## 🧪 Testing
-
-* Run all tests:
-
-  ```bash
-  pytest -v
-  ```
-* Lint with `ruff` or `flake8`
-* Type-check with `mypy`
-
-## 🧱 Code Style
+## Code Style
 
 * Follow **PEP8** and **SOLID principles**
 * Use **SQLAlchemy ORM models**
@@ -83,4 +77,7 @@ Data persists in the `dbdata` Docker volume.
   * `feat(ui): add export to JSON`
   * `fix(db): resolve duplicate key issue`
 
-
+* Git Branching strategy:
+  * Always include the issue number first, then a short, case summary, e.g.:
+  * `docs/12-add-documentation-files`
+* For details on git commit message, brnaching strategy and other relevant part, refer to [git-branching-guide](docs/git-branching-guide.md) document.
