@@ -34,7 +34,7 @@ class Settings:
     def DATABASE_URL(self) -> str:
         database_url = os.getenv("DATABASE_URL")
 
-        if database_url != None:
+        if database_url is not None:
             return database_url
         else:
             return (
