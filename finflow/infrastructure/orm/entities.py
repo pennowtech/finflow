@@ -13,7 +13,6 @@
 # limitations under the License.
 
 
-# finflow/infrastructure/orm/entities.py
 from __future__ import annotations
 
 from datetime import date
