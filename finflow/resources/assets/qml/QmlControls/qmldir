@@ -1,0 +1,10 @@
+module QmlControls
+singleton Theme 1.0 Theme.qml
+Calendar 1.0 Calendar.qml
+DatePicker 1.0 DatePicker.qml
+UserMenu 1.0 UserMenu.qml
+TitleBar 1.0 TitleBar.qml
+TopBarWinButtons 1.0 TopBarWinButtons.qml
+NotificationMenu 1.0 NotificationMenu.qml
+Card 1.0 Card.qml
+

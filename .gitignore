@@ -93,3 +93,6 @@ Thumbs.db
 # -------------------------------
 .vscode/
 .idea/
+tmp*.*
+.venv*
+finflow/ff.*
